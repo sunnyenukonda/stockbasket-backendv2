@@ -10,7 +10,7 @@ const session = require('express-session');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-const port = process.env.port || 3000;
+const port = process.env.PORT|| 3000;
 
 app.use(express.json());
 app.use(cors({
@@ -227,6 +227,6 @@ app.get('/test',(req, res) => {
   res.send("working");
 });
 
-app.listen(port, () => {
+app.listen(port, '0.0.0.0', () => {
   console.log(`Example app listening on port ${port}`)
 });
