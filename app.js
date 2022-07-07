@@ -1,6 +1,10 @@
 const express = require('express');
 const mysql = require('mysql');
 const cors = require('cors');
+const https = require('https');
+var http = require('http');
+const path = require('path');
+const fs = require('fs');
 const app = express();
 
 const bodyParser = require('body-parser');
@@ -14,7 +18,7 @@ const port = process.env.PORT|| 3000;
 
 app.use(express.json());
 app.use(cors({
-  origin: ["http://master.dw50zmxdd8o5n.amplifyapp.com"],
+  origin: ["https://master.dw50zmxdd8o5n.amplifyapp.com"],
   methods: ["GET", "POST"],
   credentials: true
 }));
@@ -227,6 +231,11 @@ app.get('/test',(req, res) => {
   res.send("working");
 });
 
-app.listen(port, '0.0.0.0', () => {
+const sslServer = https.createServer({
+  key: fs.readFileSync(path.join(__dirname, 'cert', 'key.pem')),
+  cert: fs.readFileSync(path.join(__dirname, 'cert', 'cert.pem'))
+},app);
+
+sslServer.listen(port, '0.0.0.0', () => {
   console.log(`Example app listening on port ${port}`)
 });
