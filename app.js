@@ -10,7 +10,7 @@ const session = require('express-session');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
-const port = 8000;
+const port = process.env.port || 8000;
 
 app.use(express.json());
 app.use(cors({
