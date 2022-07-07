@@ -14,7 +14,7 @@ const port = process.env.PORT|| 3000;
 
 app.use(express.json());
 app.use(cors({
-  origin: ["https://master.dw50zmxdd8o5n.amplifyapp.com"],
+  origin: ["http://master.dw50zmxdd8o5n.amplifyapp.com"],
   methods: ["GET", "POST"],
   credentials: true
 }));
