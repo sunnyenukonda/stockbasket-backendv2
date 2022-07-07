@@ -223,6 +223,9 @@ app.post('/logout',(req, res) => {
  res.send({res: 'Success!'});
 });
 
+app.get('/test',(req, res) => {
+  res.send("working");
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
